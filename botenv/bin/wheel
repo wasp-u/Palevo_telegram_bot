@@ -1,4 +1,4 @@
-#!/home/vlad/PycharmProjects/SADS/lab1/botenv/bin/python3
+#!/home/w/Python3/telegramBot/botenv/bin/python2
 
 # -*- coding: utf-8 -*-
 import re

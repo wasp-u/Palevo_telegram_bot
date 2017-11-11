@@ -1,4 +1,4 @@
-#!/home/vlad/PycharmProjects/SADS/lab1/botenv/bin/python
+#!/home/w/Python3/telegramBot/botenv/bin/python
 
 import sys
 import getopt

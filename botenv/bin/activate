@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/vlad/PycharmProjects/SADS/lab1/botenv"
+VIRTUAL_ENV="/home/w/Python3/telegramBot/botenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
