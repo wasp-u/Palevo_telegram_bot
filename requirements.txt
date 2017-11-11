@@ -1,7 +1,6 @@
 boto==2.40.0
 chardet==2.3.0
 cryptography==1.7.1
-duplicity==0.7.6
 enum34==1.1.6
 idna==2.2
 ipaddress==1.0.17
