@@ -34,6 +34,7 @@ def admin_students_list(message):
     file_with_captains_usernames = open("captains.txt", "r")
     captains_usernames = file_with_captains_usernames.read()
     file_with_captains_usernames.close()
+
     if message.from_user.username in captains_usernames:
         bot.send_message(message.chat.id, str('Напиши через кому юзернейми всіх студентів групи, яким ти хочеш дати доступ до бота у вигляді @ЮЗЕР_НЕЙМ.'))
     else:
@@ -42,12 +43,12 @@ def admin_students_list(message):
 @bot.message_handler(func = lambda message: '@' in message.text)
 def add_student(message):
     file_with_usernames = open("students.txt", "a")
-    sl = message.text.split(", ")
+    sl = message.text.split(",")
     for i in sl:
         file_with_usernames.write(i[1:]+'\n')
 
     file_with_usernames.close()
-    bot.send_message(message.chat.id, 'add')
+    bot.send_message(message.chat.id, 'these people were added: '+str(sl))
 
 
 @bot.message_handler(commands=["start"])
