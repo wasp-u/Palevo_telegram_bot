@@ -7,7 +7,7 @@ from telebot import types
 
 bot = telebot.TeleBot("488787929:AAG_tytXMIWNgdXgiS5Gq5bftWfEOW14vtA")
 
-start_letter = "Цей бот створений для потоку ІО/ІВ. Тут ви зможете знайти  'палєво' по команді /palevo. Також дізнатися по яким предметам у вас будуть заліки /credits або екзамени /exams. Якщо ти староста, то в тебе є можливість додати студентів до 'білого списку бота', тобто надати доступ студентам групи до бота. Цу можна зробити по команді /admin_students_list ."
+start_letter = "Цей бот створений для потоку ІО/ІВ. Тут ви зможете знайти  'палєво' по команді /palevo. Також дізнатися по яким предметам у вас будуть заліки /credits або екзамени /exams. Якщо ти староста, то в тебе є можливість додати студентів до 'білого списку бота', тобто надати доступ студентам групи до бота. Це можна зробити по команді /admin_students_list ."
 
 # value - url;  key - curse;
 palevo_bot_urls = {1:("https://drive.google.com/drive/u/0/folders/0B0BNlrWqUEvVRHhXTVMwY3BORDA","https://drive.google.com/drive/folders/0B0vn58kzRhxpU0lwWFlQcUxYeWs"),
