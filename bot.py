@@ -1,6 +1,6 @@
 
 # -*- coding: utf-8 -*-
-# ver 0.0.3
+# ver 1.0.0
 
 import telebot
 from telebot import types
