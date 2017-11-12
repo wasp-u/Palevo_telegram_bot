@@ -7,7 +7,7 @@ from telebot import types
 
 bot = telebot.TeleBot("488787929:AAG_tytXMIWNgdXgiS5Gq5bftWfEOW14vtA")
 
-start_letter = "Цей бот створений для потоку ІО/ІВ. Тут ви зможете знайти  'палєво' по команді /palevo. Також дізнатися по яким предметам у вас будуть заліки /credits або екзамени /exams"
+start_letter = "Цей бот створений для потоку ІО/ІВ. Тут ви зможете знайти  'палєво' по команді /palevo. Також дізнатися по яким предметам у вас будуть заліки /credits або екзамени /exams. Якщо ти староста, то в тебе є можливість додати студентів до 'білого списку бота', тобто надати доступ студентам групи до бота. Цу можна зробити по команді /admin_students_list ."
 
 # value - url;  key - curse;
 palevo_bot_urls = {1:("https://drive.google.com/drive/u/0/folders/0B0BNlrWqUEvVRHhXTVMwY3BORDA","https://drive.google.com/drive/folders/0B0vn58kzRhxpU0lwWFlQcUxYeWs"),
@@ -26,6 +26,28 @@ palevo_bot_credits = {1:("Історія\nАлгоритми\nФП\nВступ �
                       2:(None,None),
                       3:(None,None),
                       4:(None,None)}
+
+
+
+@bot.message_handler(commands=["admin_students_list"])
+def admin_students_list(message):
+    file_with_captains_usernames = open("captains.txt", "r")
+    captains_usernames = file_with_captains_usernames.read()
+    file_with_captains_usernames.close()
+    if message.from_user.username in captains_usernames:
+        bot.send_message(message.chat.id, str('Напиши через кому юзернейми всіх студентів групи, яким ти хочеш дати доступ до бота у вигляді @ЮЗЕР_НЕЙМ.'))
+    else:
+        bot.send_message(message.chat.id, 'F U')
+
+@bot.message_handler(func = lambda message: '@' in message.text)
+def add_student(message):
+    file_with_usernames = open("students.txt", "a")
+    sl = message.text.split(", ")
+    for i in sl:
+        file_with_usernames.write(i[1:]+'\n')
+
+    file_with_usernames.close()
+    bot.send_message(message.chat.id, 'add')
 
 
 @bot.message_handler(commands=["start"])
@@ -56,17 +78,23 @@ def create_keyboard(first_word,input_list):
 
 @bot.message_handler(commands=["credits","exams","palevo"])
 def add_keyboard(message):
-    input_list = ('1 курс','2 курс','3 курс','4 курс')
+    file_with_usernames = open("students.txt", "r")
+    usernames = file_with_usernames.read()
+    file_with_usernames.close()
 
-    if message.text == "/credits":
-        keyboard = create_keyboard('Заліки ',input_list)
-    if message.text == "/exams":
-        keyboard = create_keyboard('Екзамени ',input_list)
-    if message.text == "/palevo":
-        keyboard = create_keyboard("Палєво ",input_list)
+    if message.from_user.username in usernames:
+        input_list = ('1 курс','2 курс','3 курс','4 курс')
 
-    bot.send_message(message.chat.id, "Вибери курс: ", reply_markup=keyboard)
+        if message.text == "/credits":
+            keyboard = create_keyboard('Заліки ',input_list)
+        if message.text == "/exams":
+            keyboard = create_keyboard('Екзамени ',input_list)
+        if message.text == "/palevo":
+            keyboard = create_keyboard("Палєво ",input_list)
 
+        bot.send_message(message.chat.id, "Вибери курс: ", reply_markup=keyboard)
+    else:
+        bot.send_message(message.chat.id, 'F U')
 
 @bot.message_handler(func = lambda message: True)
 def curse(message):
