@@ -40,7 +40,7 @@ def admin_students_list(message):
     else:
         bot.send_message(message.chat.id, 'F U')
 
-@bot.message_handler(func = lambda message: '@' in message.text)
+@bot.message_handler(func = lambda message: "@" in message.text)
 def add_student(message):
     file_with_usernames = open("students.txt", "a")
     sl = message.text.split(",")
