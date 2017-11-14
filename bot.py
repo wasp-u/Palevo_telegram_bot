@@ -29,7 +29,7 @@ palevo_bot_credits = {1:("Історія\nАлгоритми\nФП\nВступ �
 
 
 try:
-    @bot.message_handler(commands=["admin_students_list"])
+    @bot.message_handler(commands=["append_students_list"])
     def admin_students_list(message):
         file_with_captains_usernames = open("captains.txt", "r")
         captains_usernames = file_with_captains_usernames.read()
@@ -39,6 +39,7 @@ try:
             bot.send_message(message.chat.id, str('Напиши через кому юзернейми всіх студентів групи, яким ти хочеш дати доступ до бота у вигляді @ЮЗЕР_НЕЙМ.'))
         else:
             bot.send_message(message.chat.id, 'F U')
+
 
     @bot.message_handler(func = lambda message: "@" in message.text)
     def add_student(message):
