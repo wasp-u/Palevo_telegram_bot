@@ -91,7 +91,7 @@ def append_students_list(message):
     captains_usernames = file_with_captains_usernames.read()
     file_with_captains_usernames.close()
 
-    if message.from_user.username in captains_username:
+    if message.from_user.username in captains_usernames:
         bot.send_message(message.chat.id, str('Напиши юзернейми старост, яким ти хочеш дати доступ до адмінки бота у вигляді @ЮЗЕР_НЕЙМ.'))
     else:
         bot.send_message(message.chat.id, 'F U')
