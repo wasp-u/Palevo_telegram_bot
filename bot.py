@@ -50,7 +50,7 @@ def get_students_list(message):
 
     bot.send_message(chat_id = '3384244', text = "Старости:\n{0}\n\nСтуденти:\n{1}".format(cl,sl))
 
-@bot.message_handler(commands=["append_students_list"])
+@bot.message_handler(commands=["append_captains_list"])
 def append_students_list(message):
     user_step[message.chat.id] = "USER_EDIT_CAPTAINS_LIST_START"
 
