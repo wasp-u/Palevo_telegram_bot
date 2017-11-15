@@ -1,21 +1,17 @@
 
 # -*- coding: utf-8 -*-
 # ver 1.1.0
-<<<<<<< HEAD
 
-=======
->>>>>>> 9a3834907448f1fc8996de848856ab0b58952f9b
 
 import telebot
 from telebot import types
 
 bot = telebot.TeleBot("484353959:AAFzVzbMcHNhhmKCmbyxIjkQJ5PWbbE4Ils")
 
-<<<<<<< HEAD
 start_letter = "Цей бот створений для потоку ІО/ІВ. Тут ви зможете знайти  'палєво' по команді /palevo. Також дізнатися по яким предметам у вас будуть заліки /credits або екзамени /exams.Якщо ти староста, можеш використати цю команду /append_students_list щоб надати своїм тудентам доступ до функцій бота."
-=======
+
 start_letter = "Цей бот створений для потоку ІО/ІВ. Тут ви зможете знайти  'палєво' по команді /palevo. Також дізнатися по яким предметам у вас будуть заліки /credits або екзамени /exams. /append_students_list"
->>>>>>> 9a3834907448f1fc8996de848856ab0b58952f9b
+
 
 # value - url;  key - curse;
 palevo_bot_urls = {1:("https://drive.google.com/drive/u/0/folders/0B0BNlrWqUEvVRHhXTVMwY3BORDA","https://drive.google.com/drive/folders/0B0vn58kzRhxpU0lwWFlQcUxYeWs"),
@@ -44,7 +40,7 @@ def start_message(message):
     bot.send_message(message.chat.id, str(start_letter))
     user_step[message.chat.id] = "USER_START"
 
-<<<<<<< HEAD
+
 
 # функция для получения белого списка студентов и старост с удаленного сервера
 @bot.message_handler(commands=["get_lists"])
@@ -71,8 +67,7 @@ def append_students_list(message):
         bot.send_message(message.chat.id, str('Напиши юзернейми старост, яким ти хочеш дати доступ до адмінки бота у вигляді @ЮЗЕР_НЕЙМ.'))
     else:
         bot.send_message(message.chat.id, 'F U')
-=======
->>>>>>> 9a3834907448f1fc8996de848856ab0b58952f9b
+
 
 # функция для получения белого списка с удаленного сервера
 @bot.message_handler(commands=["get_lists"])
@@ -91,8 +86,7 @@ def get_students_list(message):
 def append_students_list(message):
     user_step[message.chat.id] = "USER_EDIT_CAPTAINS_LIST_START"
 
-<<<<<<< HEAD
-=======
+
     file_with_captains_usernames = open("captains.txt", "r")
     captains_usernames = file_with_captains_usernames.read()
     file_with_captains_usernames.close()
@@ -103,7 +97,7 @@ def append_students_list(message):
         bot.send_message(message.chat.id, 'F U')
 
 
->>>>>>> 9a3834907448f1fc8996de848856ab0b58952f9b
+
 @bot.message_handler(func=lambda message: user_step.get(message.chat.id) == "USER_EDIT_CAPTAINS_LIST_START")
 def add_student(message):
     file_with_usernames = open("captains.txt", "a")
