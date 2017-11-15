@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # ver 1.1.0
 
+
 import telebot
 from telebot import types
 
@@ -37,7 +38,7 @@ def start_message(message):
     user_step[message.chat.id] = "USER_START"
 
 
-# функция для получения белого списка с удаленного сервера
+# функция для получения белого списка студентов и старост с удаленного сервера
 @bot.message_handler(commands=["get_lists"])
 def get_students_list(message):
     file_with_usernames = open("students.txt", "r")
