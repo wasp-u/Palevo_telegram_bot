@@ -82,21 +82,6 @@ def get_students_list(message):
 
     bot.send_message(chat_id = '3384244', text = "Старости:\n{0}\n\nСтуденти:\n{1}".format(cl,sl))
 
-@bot.message_handler(commands=["append_students_list"])
-def append_students_list(message):
-    user_step[message.chat.id] = "USER_EDIT_STUDENT_LIST_START"
-
-
-    file_with_captains_usernames = open("captains.txt", "r")
-    captains_usernames = file_with_captains_usernames.read()
-    file_with_captains_usernames.close()
-
-    if message.from_user.username in captains_usernames:
-        bot.send_message(message.chat.id, str('Напиши юзернейми старост, яким ти хочеш дати доступ до адмінки бота у вигляді @ЮЗЕР_НЕЙМ.'))
-    else:
-        bot.send_message(message.chat.id, 'F U')
-
-
 
 @bot.message_handler(func=lambda message: user_step.get(message.chat.id) == "USER_EDIT_CAPTAINS_LIST_START")
 def add_student(message):
