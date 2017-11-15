@@ -84,7 +84,7 @@ def get_students_list(message):
 
 @bot.message_handler(commands=["append_students_list"])
 def append_students_list(message):
-    user_step[message.chat.id] = "USER_EDIT_CAPTAINS_LIST_START"
+    user_step[message.chat.id] = "USER_EDIT_STUDENT_LIST_START"
 
 
     file_with_captains_usernames = open("captains.txt", "r")
@@ -110,7 +110,7 @@ def add_student(message):
     file_with_usernames.close()
 
     keyboard = types.InlineKeyboardMarkup()
-    button_stop = types.InlineKeyboardButton(text='Завершити редагування.',callback_data="USER_EDIT_STUDENT_LIST_STOP, {}".format(message.message_id))
+    button_stop = types.InlineKeyboardButton(text='Завершити редагування.',callback_data="USER_EDIT_CAPTAINS_LIST_STOP, {}".format(message.message_id))
     keyboard.add(button_stop)
 
     bot.send_message(message.chat.id, "users {} add".format(message.text), reply_markup=keyboard)
