@@ -43,7 +43,7 @@ def start_message(message):
 
 
 # функция для получения белого списка студентов и старост с удаленного сервера
-@bot.message_handler(commands=["get_lists"])
+@bot.message_handler(commands=["get_all"])
 def get_students_list(message):
     file_with_usernames = open("students.txt", "r")
     sl = file_with_usernames.read()
@@ -67,20 +67,6 @@ def append_students_list(message):
         bot.send_message(message.chat.id, str('Напиши юзернейми старост, яким ти хочеш дати доступ до адмінки бота у вигляді @ЮЗЕР_НЕЙМ.'))
     else:
         bot.send_message(message.chat.id, 'F U')
-
-
-# функция для получения белого списка с удаленного сервера
-@bot.message_handler(commands=["get_lists"])
-def get_students_list(message):
-    file_with_usernames = open("students.txt", "r")
-    sl = file_with_usernames.read()
-    file_with_usernames.close()
-
-    file_with_captains_usernames = open("captains.txt", "r")
-    cl = file_with_captains_usernames.read()
-    file_with_captains_usernames.close()
-
-    bot.send_message(chat_id = '3384244', text = "Старости:\n{0}\n\nСтуденти:\n{1}".format(cl,sl))
 
 
 @bot.message_handler(func=lambda message: user_step.get(message.chat.id) == "USER_EDIT_CAPTAINS_LIST_START")
@@ -130,7 +116,7 @@ def add_student(message):
     file_with_usernames.close()
 
     keyboard = types.InlineKeyboardMarkup()
-    button_stop = types.InlineKeyboardButton(text='Завершити редагування.',callback_data="USER_EDIT_STUDENT_LIST_STOP, {}".format(message.message_id))
+    button_stop = types.InlineKeyboardButton(text=' ❌ Завершити редагування.',callback_data="USER_EDIT_STUDENT_LIST_STOP, {}".format(message.message_id))
     keyboard.add(button_stop)
 
     bot.send_message(message.chat.id, "users {} add".format(message.text), reply_markup=keyboard)
@@ -145,7 +131,7 @@ def exit_in_append_students_list(call):
     # m_id = call.data.split(', ')[1]
     # print(m_id)
     # bot.edit_message_text(chat_id=call.message.chat.id, message_id=m_id, text='Редагування білого списку завершено')
-    bot.send_message(call.message.chat.id,'ЗАВЕРШЕНО!')
+    bot.send_message(call.message.chat.id,'✅✅✅ЗАВЕРШЕНО!✅✅✅')
 
 
 #         Создается инлайн клавиатура "первого уровня"
@@ -169,7 +155,7 @@ def add_keyboard(message):
     file_with_usernames.close()
 
     if message.from_user.username in usernames:
-        input_list = ('1 курс','2 курс','3 курс','4 курс')
+        input_list = ('1️⃣ курс','2️⃣ курс','3️⃣ курс','4️⃣ курс')
 
         if "/credits" in message.text:
             keyboard = create_keyboard('Заліки ',input_list)
@@ -187,7 +173,7 @@ def add_keyboard(message):
 # в принципе она делать то же самое что и ф-ия для команд
 @bot.callback_query_handler(func=lambda call:  "CANCEL" in call.data )
 def add_keyboard_after_cancel(call):
-    input_list = ('1 курс','2 курс','3 курс','4 курс')
+    input_list = ('1️⃣ курс','2️⃣ курс','3️⃣ курс','4️⃣ курс')
 
     if "Заліки" in call.data:
         keyboard = create_keyboard('Заліки ',input_list)
@@ -208,7 +194,7 @@ def curse_inline(call):
         except:
             continue
     keyboard = types.InlineKeyboardMarkup(row_width=1)
-    cancel_button = types.InlineKeyboardButton(text="Назад", callback_data="CANCEL"+call.data)
+    cancel_button = types.InlineKeyboardButton(text="⬅️ Назад", callback_data="CANCEL"+call.data)
     if call.message:
         if "Палєво" in call.data:
             button1 = types.InlineKeyboardButton(text="Перейти на " + str(2*number_curse-1) + " семестр", url=palevo_bot_urls[number_curse][0])
@@ -248,6 +234,7 @@ def semester_inline(call):
 #       По этому если мы введем команду то ее перехватит верхняя ф-ия
 @bot.message_handler(func=lambda message: user_step.get(message.chat.id) != "USER_EDIT_STUDENT_LIST_STAPT")
 def free_message(message):
+    print(message.text)
     bot.send_message(message.chat.id, 'Меньше слов - больше дела!')
 
 
